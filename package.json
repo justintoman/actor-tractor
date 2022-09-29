@@ -3,10 +3,15 @@
   "sideEffects": false,
   "scripts": {
     "build": "remix build",
-    "dev": "remix dev"
+    "dev": "remix dev",
+    "lint": "eslint app",
+    "lint:fix": "eslint app --fix",
+    "prettier": "prettier app",
+    "prettier:fix": "prettier app --write"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.4",
+    "@chakra-ui/styled-system": "^2.3.3",
     "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.4",
@@ -15,23 +20,108 @@
     "@remix-run/vercel": "^1.7.2",
     "@vercel/node": "^2.4.4",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.5",
     "envalid": "^7.3.1",
     "framer-motion": "^6.5.1",
+    "neo4j-driver": "^5.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tiny-invariant": "^1.2.0",
     "zod": "^3.19.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.19.3",
     "@remix-run/dev": "^1.7.2",
     "@remix-run/eslint-config": "^1.7.2",
     "@remix-run/serve": "^1.7.2",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "eslint": "^8.23.1",
-    "typescript": "^4.7.4"
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.1.1",
+    "typescript": "4.8.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
+  },
+  "prettier": {
+    "bracketSpacing": false,
+    "tabWidth": 2,
+    "arrowParens": "avoid",
+    "printWidth": 120,
+    "singleQuote": true,
+    "trailingComma": "none"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@remix-run/eslint-config",
+      "@remix-run/eslint-config/node",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+      "prettier"
+    ],
+    "parserOptions": {
+      "project": [
+        "./tsconfig.json"
+      ]
+    },
+    "rules": {
+      "curly": "warn",
+      "no-param-reassign": [
+        "warn",
+        {
+          "props": true
+        }
+      ],
+      "no-console": "warn",
+      "no-restricted-imports": [
+        "warn",
+        {
+          "paths": [
+            {
+              "name": ".",
+              "message": "Auto-import has pulled in the wrong path. Please use the file path import"
+            }
+          ],
+          "patterns": [
+            {
+              "group": [
+                "../*"
+              ],
+              "message": "Importing from a parent can lead to circular dependencies. Please use '~/' imports"
+            }
+          ]
+        }
+      ],
+      "object-shorthand": "warn",
+      "prefer-template": "warn",
+      "no-debugger": "warn",
+      "react/jsx-boolean-value": "warn",
+      "react/jsx-fragments": "warn",
+      "react/jsx-no-useless-fragment": [
+        "warn",
+        {
+          "allowExpressions": true
+        }
+      ],
+      "react/prop-types": "off",
+      "react/self-closing-comp": "warn",
+      "@typescript-eslint/await-thenable": "warn",
+      "@typescript-eslint/camelcase": "off",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-for-in-array": "warn",
+      "@typescript-eslint/no-unnecessary-boolean-literal-compare": "warn",
+      "@typescript-eslint/no-unnecessary-condition": "warn",
+      "@typescript-eslint/no-unnecessary-type-assertion": "warn",
+      "@typescript-eslint/require-await": "warn",
+      "@typescript-eslint/return-await": "warn"
+    }
   }
 }

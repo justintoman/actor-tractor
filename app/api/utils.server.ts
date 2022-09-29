@@ -4,7 +4,7 @@ export function wrapAndMap<T extends Record<string, (...args: any[]) => any>>(ap
   return Object.keys(api).reduce((wrapped, key) => {
     return {
       ...wrapped,
-      [key]: async function (...args: any[]) {
+      async [key](...args: any[]) {
         const mapKey = `${key}.${JSON.stringify(args)}`;
         if (map.has(mapKey)) {
           return map.get(mapKey);

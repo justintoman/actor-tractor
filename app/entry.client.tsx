@@ -1,5 +1,6 @@
 // entry.client.tsx
-import {ReactNode, StrictMode} from 'react';
+import type {ReactNode} from 'react';
+import {StrictMode} from 'react';
 import {useState} from 'react';
 import {hydrateRoot} from 'react-dom/client';
 import {CacheProvider} from '@emotion/react';

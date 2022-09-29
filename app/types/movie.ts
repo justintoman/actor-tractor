@@ -1,9 +1,9 @@
 import type {Genre, ProductionCompany, ProductionCountry, SpokenLanguage} from './common';
-import type {operations} from './schema';
+
 export interface MovieDetails {
   adult: boolean;
-  backdrop_path?: string | null;
-  poster_path?: string | null;
+  backdrop_path?: string;
+  poster_path?: string;
   belongs_to_collection: any;
   budget: number;
   genres: Genre[];
@@ -27,8 +27,6 @@ export interface MovieDetails {
   vote_average: number;
   vote_count: number;
 }
-
-type Details = operations['GET_movie-movie_id']['responses'][200];
 
 export interface MovieCredits {
   id: number;

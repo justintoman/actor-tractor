@@ -1,9 +1,11 @@
 // root.tsx
-import React, {useContext, useEffect} from 'react';
+import type React from 'react';
+import {useContext, useEffect} from 'react';
 import {withEmotionCache} from '@emotion/react';
 import {ChakraProvider, ColorModeScript} from '@chakra-ui/react';
 import {Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration} from '@remix-run/react';
-import {MetaFunction, LinksFunction, LoaderFunction} from '@remix-run/node'; // Depends on the runtime you choose
+import type {MetaFunction, LinksFunction} from '@remix-run/node';
+import {LoaderFunction} from '@remix-run/node'; // Depends on the runtime you choose
 
 import {ServerStyleContext, ClientStyleContext} from './theme/context';
 import theme from './theme/theme';
@@ -14,7 +16,7 @@ export const meta: MetaFunction = () => ({
   viewport: 'width=device-width,initial-scale=1'
 });
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [
     {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
     {rel: 'preconnect', href: 'https://fonts.gstatic.com'},
@@ -36,6 +38,7 @@ const Document = withEmotionCache(({children}: DocumentProps, emotionCache) => {
   // Only executed on client
   useEffect(() => {
     // re-link sheet container
+    // eslint-disable-next-line no-param-reassign
     emotionCache.sheet.container = document.head;
     // re-inject tags
     const tags = emotionCache.sheet.tags;
@@ -49,8 +52,6 @@ const Document = withEmotionCache(({children}: DocumentProps, emotionCache) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(theme.config.initialColorMode);
-
   return (
     <html lang="en">
       <head>
@@ -62,7 +63,6 @@ const Document = withEmotionCache(({children}: DocumentProps, emotionCache) => {
       </head>
       <body>
         {children}
-
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <ScrollRestoration />
         <Scripts />
