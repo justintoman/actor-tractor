@@ -17,6 +17,7 @@ specifiers:
   '@types/react-dom': ^18.0.6
   '@vercel/node': ^2.4.4
   axios: ^0.27.2
+  dayjs: ^1.11.5
   envalid: ^7.3.1
   eslint: ^8.23.1
   eslint-config-prettier: ^8.5.0
@@ -41,6 +42,7 @@ dependencies:
   '@remix-run/vercel': 1.7.2_vdcavuuprsfwosnu3x64sz2mz4
   '@vercel/node': 2.5.21
   axios: 0.27.2
+  dayjs: 1.11.5
   envalid: 7.3.1
   framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
   neo4j-driver: 5.0.1
@@ -4129,6 +4131,10 @@ packages:
   /data-uri-to-buffer/3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
     engines: {node: '>= 6'}
+
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
+    dev: false
 
   /deasync/0.1.28:
     resolution: {integrity: sha512-QqLF6inIDwiATrfROIyQtwOQxjZuek13WRYZ7donU5wJPLoP67MnYxA6QtqdvdBy2mMqv5m3UefBVdJjvevOYg==}
